@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="js/angular.min.js"></script>
+    <script>
+        var x=angular.module("pianshu",[])
+        x.controller("garg",function($scope)
+        {
+            $scope.fn="Rohit";
+            $scope.ln="Sunkaria";
+            $scope.dojoin=function()
+            {
+             $scope.full=$scope.fn+" "+$scope.ln;
+             //alert($scope.full);
+            } 
+            $scope.ary=["none","jan","feb","march"];
+            $scope.selmonth=$scope.ary[0];
+            $scope.doshow=function()
+            {
+              //alert();
+              alert($scope.selmonth);
+            }
+            $scope.jsonAry = [{
+                    "emailid": "sst@gmail.com",
+                    "pwd": "ancf",
+                    "mobile" : "734783784"
+                },
+                {
+                    emailid: "1bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "111111"
+                },
+                {
+                    emailid: "2bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "222222"
+                },
+                {
+                    emailid: "3bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "3333333"
+                }
+            ];
+            $scope.dodelete=function()
+            {
+              alert(email);
+            }
+        })
+    </script>
+
+  </head>
+  <body ng-app="pianshu" ng-controller="garg">
+    <center>
+        Hello:- {{fn+"  "+ln}}
+        <!-- <p>
+            <input type="text" ng-model="fn">
+            <input type="text" ng-model="ln">
+        </p> -->
+        <p>
+            <input type="button" value="join" ng-click="dojoin();">
+            <p>
+                <input type="text" ng-model="full">
+            </p>
+        </p>
+        <hr>
+        Months
+        <select ng-change="doshow();" ng-model="selmonth">
+          <option ng-repeat="value in  ary" value="{{value}}">{{value}}</option>
+        </select>
+        <hr>
+        <center>
+          <h2>All Records </h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">Password</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="obj in jsonAry">
+                <td>
+                  {{$index+1}}
+                </td>
+                <td>
+                  {{obj.emailid}}
+                </td>
+                <td>
+                  {{obj.pwd}}
+                </td>
+                <td>
+                  {{obj.mobile}}
+                </td>
+                <td>
+                  <a href="#" ng-click="dodelete(obj.emailid);"> Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </center>
+    </center>
+  </body>
+</html>
